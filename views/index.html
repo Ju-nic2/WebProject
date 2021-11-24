@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+{% block content %}
+<p id ="title">Junic World<a href="index.html"></a></p>
+  <div id="indexBody">
+    <p style="margin-top:5px;">
+      <img src = "images/indexSample.jpg" width="400dp">
+    </p>
+    <p>
+      Share your life, See other's life<br>
+      Welcome to Junic world <br>
+    </p>
+    <form action="/auth/login" method="post">
+      <div class = "box">
+        <input class= "input" id="id" type="text" placeholder="아이디를 입력하세요"name="id" required autofocus>
+      </div>
+      <div class = "box">
+        <input class= "input" id="password" type="password"   placeholder="패스워드를 입력하세요" name="password" required>
+      </div>
+      <div class="box">
+          <button class = "input" id="login" type="submit" class="btn">로그인</button>
+      </div>
+
+    </form>
+      <form  action="/signup" method="get">
+        <div class="box">
+            <button class = "input" id="login" type="submit" class="btn">회원가입</button>
+        </div>
+        </form>
+     </div>
+  {% endblock %}

@@ -1,0 +1,27 @@
+#indexBody{
+  border-right: black 2px dashed;
+  border-left : black 2px dashed;
+  margin-right: 150px;
+  margin-left:150px;
+  text-align: center;
+}
+.box{
+  margin-bottom: 15px;
+  font-size: 30px;
+}
+
+.input{
+  width : 200px;
+  height: 30px;
+  border: 2px solid black;
+  border-radius: 5px;
+}
+
+#content_Title{
+  font-size: 30px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+#content_Title a{
+   text-decoration:underline;
+}
