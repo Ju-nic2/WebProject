@@ -7,6 +7,32 @@
     <link rel="stylesheet" href="css/index.css">
   </head>
 <body>
+  <p id ="title">Junic World<a href="index.html"></a></p>
+  {% if isLogined and where === 'profile'%}
+        <div id="upperBar">
+          <div class ="menu">
+            <div id ="clicked"> <a href="/profile">Profile</a></div>
+            <div ><a href="/home">Home</a></div>
+            <div ><a href="/msg">Messages</a></div>
+          </div>
+        </div>
+  {% elif isLogined and where === 'home' %}
+      <div id="upperBar">
+        <div class ="menu">
+          <div > <a href="/profile">Profile</a></div>
+          <div id ="clicked" ><a href="/home">Home</a></div>
+          <div ><a href="/msg">Messages</a></div>
+        </div>
+      </div>
+  {% elif isLogined and where === 'msg' %}
+      <div id="upperBar">
+        <div class ="menu">
+          <div > <a href="/profile">Profile</a></div>
+          <div id ="clicked"><a href="/home">Home</a></div>
+          <div ><a href="/msg">Messages</a></div>
+        </div>
+      </div>
+  {% endif %}
   {% block content %}
   {% endblock %}
   <div id= "last">
