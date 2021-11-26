@@ -39,5 +39,12 @@
     <div style="text-align:left">Made by Junic</div>
     <div style="text-align:right">contact : ata97@naver.com</div>
   </div>
+  <script>
+    window.onload = () => {
+      if (new URL(location.href).searchParams.get('loginError')) {
+        alert(new URL(location.href).searchParams.get('loginError'));
+      }
+    };
+  </script>
 </body>
 </HTML>

@@ -1,0 +1,38 @@
+{% extends 'layout.html' %}
+{% block content %}
+  <div id="indexBody">
+    <p>
+      Share your life, See other's life<br>
+      Participate in Junic world<br>
+    </p>
+    <form action="/auth/signup" method="post">
+      <div class = "box">
+        <input class= "input" id="id" type="text" placeholder="아이디를 입력하세요"name="id" required autofocus>
+      </div>
+      <div class = "box">
+        <input class= "input" id="password" type="password" placeholder="비밀번호를 입력하세요"name="password" required autofocus>
+      </div>
+      <div class = "box">
+        <input class= "input" id="email" type="email" placeholder="email 을 입력하세요"name="emal" required autofocus>
+      </div>
+      <div class = "box">
+        <input class= "input" id="name" type="text"   placeholder="이름을 입력하세요" name="name" required>
+      </div>
+        <div class="box">
+            <button class = "input" id="login" type="submit" class="btn">회원가입</button>
+        </div>
+        </form>
+     </div>
+     <script>
+        window.onload = () => {
+           const errorMsg =  new URL(location.href).searchParams.get('error')
+          if (errorMsg == 'existId') {
+            alert('이미 존재하는 아이디입니다.');
+          }else if(errorMsg == 'existEmail')
+          {
+            alert('이미 존재하는 이메일입니다.');
+          }
+        };
+      </script>
+  {% endblock %}
+  
