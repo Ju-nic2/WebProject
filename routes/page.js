@@ -18,7 +18,7 @@ router.get('/home',isLogined, (req, res, next) => {
     res.render('home', { title: 'JunicWorld',where : 'home'});
 });
 
-router.get('/account',isLogined, (req, res, next) => {
+router.get('/account',(req, res, next) => {
   res.render('signup', { title: 'JunicWorld'});
 });
 

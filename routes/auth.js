@@ -24,6 +24,7 @@ router.post('/login', (req, res, next) => {
 
 router.post('/signup',async (req, res, next) => {
   const { id, password,email,name } = req.body;
+  console.log(id+' '+password+' '+email+' '+name)
   try {
     const exId = await User.findOne({ where: { id } });
     const exEmail = await User.findOne({ where: { email } });
@@ -38,7 +39,8 @@ router.post('/signup',async (req, res, next) => {
       id,
       password: hash,
       email,
-      name, 
+      name,
+      NULL,
     });
     return res.redirect('/');
   } catch (error) {
