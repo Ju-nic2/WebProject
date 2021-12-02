@@ -25,7 +25,7 @@ module.exports = class User extends Sequelize.Model {
       isCheckedEmail: {
         type: Sequelize.BOOLEAN,
         allowNull: true,
-        defaultValue : false,
+        defaultValue : true,
       },
     }, {
       sequelize,

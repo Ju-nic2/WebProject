@@ -9,7 +9,14 @@
   margin-bottom: 15px;
   font-size: 30px;
 }
-
+.pbox{
+  margin-bottom: 15px;
+  font-size: 25px;
+}
+.timebox #date{
+  margin-bottom: 15px;
+  font-size: 15px;
+}
 .input{
   width : 200px;
   height: 30px;

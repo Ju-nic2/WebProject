@@ -1,0 +1,24 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div id="indexBody">
+    <p style="margin-top:5px;">
+      <img src = "images/person_sample.png" width="200dp" height="200dp">
+    </p>
+    <p  style="font-size: 35px">
+     {{user.name}}'s Profile <br>
+    </p>
+      <div class = "pbox">
+        Your Id : {{user.id}}
+      </div>
+      <div id = "last"> 
+        <div class = "pbox">
+        Your Followers : {{followerCount}} 
+      </div>
+      <div class="pbox">
+        Your Following : {{followingCount}}
+      </div>
+    </div>
+    <div class="pbox" id = "time"></div>
+    <div class="timebox"  id = "date"></div>
+</div>
+{% endblock %}

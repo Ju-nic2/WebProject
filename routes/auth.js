@@ -1,8 +1,9 @@
 const express = require('express');
+const passport = require('passport');
 const router = express.Router();
 const bcrypt = require('bcrypt');
 const User = require('../models/User');
-
+const {isLogined,isNotLogined} = require('./checkLogin');
 router.post('/login', (req, res, next) => {
   passport.authenticate('local', (authError, user, info) => { // 'local 전략'
     if (authError) {
@@ -17,9 +18,15 @@ router.post('/login', (req, res, next) => {
         console.error(loginError);
         return next(loginError);
       }
-      return res.redirect('/');
+      return res.redirect('/home');
     });
   })(req, res, next); //그 다음 미들웨어 호출 -> page.js 에 있음 
+});
+
+router.get('/logout', isLogined, (req, res) => {
+  req.logout();
+  req.session.destroy();
+  res.redirect('/');
 });
 
 router.post('/signup',async (req, res, next) => {
@@ -28,9 +35,9 @@ router.post('/signup',async (req, res, next) => {
   try {
     const exId = await User.findOne({ where: { id } });
     const exEmail = await User.findOne({ where: { email } });
-    if (exId) {
+    if (exId) { //id 중복체크
       return res.redirect('/account?error=existId');
-    }
+    } //email 중복체크 
     if (exEmail) {
       return res.redirect('/account?error=existEmail');
     }
@@ -40,7 +47,6 @@ router.post('/signup',async (req, res, next) => {
       password: hash,
       email,
       name,
-      NULL,
     });
     return res.redirect('/');
   } catch (error) {

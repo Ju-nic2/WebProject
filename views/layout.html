@@ -8,43 +8,96 @@
   </head>
 <body>
   <p id ="title">Junic World<a href="index.html"></a></p>
-  {% if isLogined and where === 'profile'%}
+  {% if user and where === 'profile'%}
         <div id="upperBar">
           <div class ="menu">
             <div id ="clicked"> <a href="/profile">Profile</a></div>
+            <div ><a href="/new">New</a></div>
             <div ><a href="/home">Home</a></div>
+            <div ><a href="/follow">Follow</a></div>
             <div ><a href="/msg">Messages</a></div>
           </div>
         </div>
-  {% elif isLogined and where === 'home' %}
+  {% elif user and where === 'new' %}
       <div id="upperBar">
         <div class ="menu">
-          <div > <a href="/profile">Profile</a></div>
-          <div id ="clicked" ><a href="/home">Home</a></div>
+          <div> <a  href="/profile">Profile</a></div>
+          <div id ="clicked" ><a href="/new">New</a></div>
+          <div><a href="/home">Home</a></div>         
+          <div ><a href="/follow">Follow</a></div>
           <div ><a href="/msg">Messages</a></div>
         </div>
       </div>
-  {% elif isLogined and where === 'msg' %}
+  {% elif user and where === 'home' %}
       <div id="upperBar">
         <div class ="menu">
-          <div > <a href="/profile">Profile</a></div>
-          <div id ="clicked"><a href="/home">Home</a></div>
+          <div> <a  href="/profile">Profile</a></div>
+          <div ><a href="/new">New</a></div>
+          <div id ="clicked"><a href="/home">Home</a></div>         
+          <div ><a href="/follow">Follow</a></div>
           <div ><a href="/msg">Messages</a></div>
+        </div>
+      </div>
+  {% elif user and where === 'follow' %}
+      <div id="upperBar">
+        <div class ="menu">
+          <div> <a  href="/profile">Profile</a></div>
+          <div ><a href="/new">New</a></div>
+          <div><a href="/home">Home</a></div>         
+          <div  id ="clicked"><a href="/follow">Follow</a></div>
+          <div ><a href="/msg">Messages</a></div>
+        </div>
+      </div>
+  {% elif user and where === 'msg' %}
+      <div id="upperBar">
+        <div class ="menu">
+          <div> <a  href="/profile">Profile</a></div>
+          <div> <a href="/new">New</a></div>
+          <div> <a href="/home">Home</a></div>         
+          <div> <a href="/follow">Follow</a></div>
+          <div id ="clicked"><a href="/msg">Messages</a></div>
         </div>
       </div>
   {% endif %}
   {% block content %}
   {% endblock %}
-  <div id= "last">
-    <div style="text-align:left">Made by Junic</div>
+  {% if user %}
+  <div id= "last_2">
+    <div style="text-align:left">Made by Junic</div> 
+    <div style="text-align:center" id ="clicked" ><a  href="/auth/logout">Log Out</a></div> 
     <div style="text-align:right">contact : ata97@naver.com</div>
   </div>
+  {% else %}
+  <div id= "last">
+    <div style="text-align:left">Made by Junic</div> 
+    <div style="text-align:right">contact : ata97@naver.com</div>
+  </div>
+  {% endif %}
   <script>
     window.onload = () => {
       if (new URL(location.href).searchParams.get('loginError')) {
         alert(new URL(location.href).searchParams.get('loginError'));
       }
+      getTime();
+      init();
     };
+    function getTime(){
+      const time = new Date();
+      const hour = time.getHours();
+      const minutes = time.getMinutes();
+      const seconds = time.getSeconds();
+      const year = time.getFullYear();
+      const month = time.getMonth()+1; //monthIndex를 반환해주기 때문에 1을 더해준다.
+      const date = time.getDate();
+      //clock.innerHTML = hour +":" + minutes + ":"+seconds;
+     document.getElementById("time").innerHTML = `${hour<10 ? `0${hour}`:hour}:${minutes<10 ? `0${minutes}`:minutes}:${seconds<10 ? `0${seconds}`:seconds}`
+     document.getElementById("date").innerHTML = year + "년 " + month + "월 " + date + "일";
+    }
+  
+  
+  function init(){
+      setInterval(getTime, 1000);
+  }
   </script>
 </body>
 </HTML>
