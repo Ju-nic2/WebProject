@@ -35,7 +35,7 @@ console.log('content : '+ req.body.post);
       urlArr.push(`/newpost/${req.files[i].filename}`);
        console.log(urlArr[i]); } 
        let jsonUrl = JSON.stringify(urlArr); 
-res.redirect('/')
+res.redirect('/home')
 });
 
 
