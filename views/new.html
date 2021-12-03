@@ -1,0 +1,28 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div id="indexBody">
+    <p style="margin-top:5px;">
+      <img src = "images/posting_icon.png" width="200dp" height="200dp">
+    </p>
+    <p  style="font-size: 25px">
+     ADD new posting<br>
+    </p>
+    
+    <form name="posting" action="/post/newpost" method="post" enctype="multipart/form-data">
+        <div class ="box"> 
+            <label id="img-label" for="images">Upload images -></label>
+            <input type='file' name='images' multiple style="width:50%; height:50%;font-size:20px;"/>
+        </div>
+        <div class ="box">
+            <input type="text" name="content" id="content" placeholder="Please write content with hashtags"  style="width:50%; height:37px; font-size:20px;"/>
+        </div>
+        <div class ="box">
+        <input type="submit" value="Upload"  style="width:25%; height:50%;font-size:20px;"/>
+        </div>
+    </form>
+      
+    </div>
+    <form> </form>
+ 
+</div>
+{% endblock %}

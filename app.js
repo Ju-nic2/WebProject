@@ -10,6 +10,8 @@ const passport = require('passport'); //passport 모듈 가져오기
 dotenv.config();
 const pageRouter = require('./routes/page'); //라우터 가져오기 
 const authRouter = require('./routes/auth');
+const postRouter = require('./routes/post');
+
 const { sequelize } = require('./models');
 const passportConfig = require('./passport'); // 설정값 가져오기 (passport/index.js)
 
@@ -49,7 +51,7 @@ app.use(passport.session()); // 설정한 passport에 세션 저장 -> passport/
 
 app.use('/', pageRouter); //라우터 연결 
 app.use('/auth', authRouter);
-
+app.use('/post',postRouter);
 
 app.use((req, res, next) => {
     const error =  new Error(`${req.method} ${req.url} 라우터가 없습니다.`);

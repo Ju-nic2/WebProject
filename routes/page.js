@@ -18,6 +18,9 @@ router.get('/home',isLogined, (req, res, next) => {
     res.render('home', { title: 'JunicWorld',where : 'home'});
 });
 
+router.get('/new',isLogined, (req, res, next) => {
+  res.render('new', { title: 'JunicWorld',where : 'new'});
+});
 
 router.get('/profile',isLogined, (req, res, next) => {
   res.render('profile', { title: 'JunicWorld',where : 'profile'});

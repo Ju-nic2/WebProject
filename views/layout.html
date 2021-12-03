@@ -73,6 +73,8 @@
     <div style="text-align:right">contact : ata97@naver.com</div>
   </div>
   {% endif %}
+  {% block script %}
+  {% endblock %}
   <script>
     window.onload = () => {
       if (new URL(location.href).searchParams.get('loginError')) {
@@ -81,23 +83,6 @@
       getTime();
       init();
     };
-    function getTime(){
-      const time = new Date();
-      const hour = time.getHours();
-      const minutes = time.getMinutes();
-      const seconds = time.getSeconds();
-      const year = time.getFullYear();
-      const month = time.getMonth()+1; //monthIndex를 반환해주기 때문에 1을 더해준다.
-      const date = time.getDate();
-      //clock.innerHTML = hour +":" + minutes + ":"+seconds;
-     document.getElementById("time").innerHTML = `${hour<10 ? `0${hour}`:hour}:${minutes<10 ? `0${minutes}`:minutes}:${seconds<10 ? `0${seconds}`:seconds}`
-     document.getElementById("date").innerHTML = year + "년 " + month + "월 " + date + "일";
-    }
-  
-  
-  function init(){
-      setInterval(getTime, 1000);
-  }
   </script>
 </body>
 </HTML>
