@@ -11,7 +11,7 @@
     <form name="posting" action="/post/newpost" method="post" enctype="multipart/form-data">
         <div class ="box"> 
             <label id="img-label" for="images">Upload images -></label>
-            <input type='file' name='images' multiple style="width:50%; height:50%;font-size:20px;"/>
+            <input id = "images" type='file' name='images' multiple style="width:50%; height:50%;font-size:20px;"/>
         </div>
         <div class ="box">
             <input type="text" name="content" id="content" placeholder="Please write content with hashtags"  style="width:50%; height:37px; font-size:20px;"/>
@@ -20,9 +20,62 @@
         <input type="submit" value="Upload"  style="width:25%; height:50%;font-size:20px;"/>
         </div>
     </form>
-      
     </div>
-    <form> </form>
- 
 </div>
 {% endblock %}
+{% block script %}
+<script>
+if (document.getElementById("images")) {
+    let uploadNum = 0; //올린 사진 셀 변수
+    let index = 0; 
+    document.getElementById("images").addEventListener("change", function (e) { 
+    const length = this.files.length; 
+    const max = 5; //사진 최대 5장까지 
+    switch (uploadNum) { 
+        case 0: 
+            if (length > max - uploadNum) 
+            { 
+                alert("사진은 최대 5장까지만 가능합니다."); 
+                return; 
+            }
+            uploadNum += length; 
+            break;
+        case 1: 
+            if (length > max - uploadNum) 
+            { 
+                alert("사진은 최대 5장까지만 가능합니다."); 
+                return; 
+            } uploadNum += length; 
+            break; 
+        case 2: 
+            if (length > max - uploadNum)
+            { 
+                alert("사진은 최대 5장까지만 가능합니다.");
+            return; 
+            } 
+            uploadNum += length;
+            break; 
+        case 3: 
+            if (length > max - uploadNum) 
+            { 
+                alert("사진은 최대 5장까지만 가능합니다.");
+                return; 
+            } 
+            uploadNum += length;
+            break; 
+        case 4: 
+            if (length > max - uploadNum) 
+            { 
+                alert("사진은 최대 5장까지만 가능합니다.");
+                return; 
+            } 
+            uploadNum += length;
+            break; 
+        default:
+            alert("사진은 최대 5장까지만 가능합니다.");
+            return;
+    }
+    });
+}
+</script>
+{% endblock%}
