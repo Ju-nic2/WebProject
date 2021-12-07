@@ -6,11 +6,11 @@ const User = require('../models/User');
 
 module.exports = () => {
   passport.use(new LocalStrategy({ 
-    usernameField: 'id', //html input tag  id 인거 (req.body 에서 가져옴)
+    usernameField: 'uid', //html input tag  id 인거 (req.body 에서 가져옴)
     passwordField: 'password',//html input tag  password 인거 
-  }, async (id, password, done) => {
+  }, async (uid, password, done) => {
     try {
-      const exUser = await User.findOne({ where: { id } }); //사용자 DB에서 가져옴 
+      const exUser = await User.findOne({ where: { uid } }); //사용자 DB에서 가져옴 
       if (exUser) {
         const result = await bcrypt.compare(password, exUser.password); //비밀번호 비교 
         if (result) {

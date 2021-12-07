@@ -30,10 +30,10 @@ router.get('/logout', isLogined, (req, res) => {
 });
 
 router.post('/signup',async (req, res, next) => {
-  const { id, password,email,name } = req.body;
-  console.log(id+' '+password+' '+email+' '+name)
+  const { uid, password,email,name } = req.body;
+  console.log(uid+' '+password+' '+email+' '+name)
   try {
-    const exId = await User.findOne({ where: { id } });
+    const exId = await User.findOne({ where: { uid } });
     const exEmail = await User.findOne({ where: { email } });
     if (exId) { //id 중복체크
       return res.redirect('/account?error=existId');
@@ -43,7 +43,7 @@ router.post('/signup',async (req, res, next) => {
     }
     const hash = await bcrypt.hash(password, 12);
     await User.create({
-      id,
+      uid,
       password: hash,
       email,
       name,
