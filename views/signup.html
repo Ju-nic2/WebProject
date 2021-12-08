@@ -25,14 +25,10 @@
      </div>
      <script>
         window.onload = () => {
-           const errorMsg =  new URL(location.href).searchParams.get('error')
-          if (errorMsg == 'existId') {
-            alert('이미 존재하는 아이디입니다.');
-          }else if(errorMsg == 'existEmail')
-          {
-            alert('이미 존재하는 이메일입니다.');
-          }
-        };
+           if(new URL(location.href).searchParams.get('error')){
+         alert(new URL(location.href).searchParams.get('error'));
+       }
+    };
       </script>
   {% endblock %}
   

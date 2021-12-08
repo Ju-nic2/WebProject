@@ -13,7 +13,6 @@ router.use((req, res, next) => { // 객체를 전역에 저장. //다른 라우�
 router.get('/', (req, res, next) => { //미들웨어 checkLogin에서 처리됨 isLogined
     res.render('index', { title: 'JunicWorld'});
   });
-
 router.get('/home',isLogined, (req, res, next) => {
     res.render('home', { title: 'JunicWorld',where : 'home'});
 });

@@ -1,0 +1,23 @@
+.main_title{
+	text-align: center;
+}
+.main_list {
+    width: 700px;
+     margin: 0 auto;
+}
+
+.list_start {
+    text-align: center;
+}
+
+.list_detail {
+    display: inline-block;
+    width: 220px;
+    height: 260px;
+	border: 1px solid;
+    margin-bottom: 5px;
+}
+
+.paging_start{
+	text-align: center;
+}
