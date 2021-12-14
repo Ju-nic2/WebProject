@@ -38,11 +38,11 @@ router.get('/editpage/:pid', isLogined, async (req, res, next) => {
 router.post('/editpost/:pid', isLogined, upload.fields([{name: 'img1' }, { name: 'img2' }, {name: 'img3' }, {name: 'img4' }, {name: 'img5' }]), async (req, res,next) =>  { 
   let curpost = req.params.pid;
   const [origin, metadata1] = await sequelize.query(`select * from posts where id = '${curpost}'`);
- let img1 = (req.files.img1) ? `/uploads/${req.files.img1[0].filename}`  : origin.img1;
- let img2 = (req.files.img2) ? `/uploads/${req.files.img2[0].filename}`  : origin.img2;
- let img3 = (req.files.img3) ? `/uploads/${req.files.img3[0].filename}`  : origin.img3;
- let img4 = (req.files.img4) ? `/uploads/${req.files.img4[0].filename}`  : origin.img4;
- let img5 = (req.files.img5) ? `/uploads/${req.files.img5[0].filename}`  : origin.img5;
+ let img1 = (req.files.img1) ? `/uploads/${req.files.img1[0].filename}`  : origin[0].img1;
+ let img2 = (req.files.img2) ? `/uploads/${req.files.img2[0].filename}`  : origin[0].img2;
+ let img3 = (req.files.img3) ? `/uploads/${req.files.img3[0].filename}`  : origin[0].img3;
+ let img4 = (req.files.img4) ? `/uploads/${req.files.img4[0].filename}`  : origin[0].img4;
+ let img5 = (req.files.img5) ? `/uploads/${req.files.img5[0].filename}`  : origin[0].img5;
  let content = (req.body.content) ? req.body.content : origin[0].content;
  const [result, metadata2] = await sequelize.query(`delete from posts where id = '${curpost}'`);
  try {
@@ -80,7 +80,7 @@ router.post('/editpost/:pid', isLogined, upload.fields([{name: 'img1' }, { name:
 router.get('/delete:pid/:img', isLogined, async (req, res, next) => {
   let curpost = req.params.pid;
   let img = req.params.img;
-  const [sex, sexy] = await sequelize.query(`update posts set ${img} = null where id = '${curpost}`);
+  const [sex, sexy] = await sequelize.query(`update posts set ${img} = null where id = '${curpost}'`);
   const [result, metadata] = await sequelize.query(`select * from posts where id = '${curpost}'`);
   console.log(result);
   res.render('new', { title: 'JunicWorld',where : 'home', post: result[0], flag: 'edit'});

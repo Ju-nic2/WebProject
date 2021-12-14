@@ -4,10 +4,10 @@
     <p style="margin-top:5px;">
       <img src = "/images/posting_icon.png" width="200dp" height="200dp">
     </p>
-    <p  style="font-size: 25px">
-     ADD new posting<br>
-    </p>
-  {% if flag == 'new' %}  
+  {% if flag == 'new' %} 
+  <p  style="font-size: 25px">
+    ADD new posting<br>
+   </p>
     <form name="posting" action="/post/newpost" method="post" enctype="multipart/form-data">
         <div class ="box"> 
             <label id="img-label" for="images">Upload images -></label>
@@ -21,15 +21,19 @@
         </div>
     </form>
     {% elif flag == 'edit' %}
+    <p  style="font-size: 25px">
+        Edit Your posting<br>
+    </p>
     <form name="posting" action="/post/editpost/{{post.id}}" method="post" enctype="multipart/form-data">
         <div class ="box"> 
             <label id="img-label" for="img1">Edit img1 -></label>
             <input id = "images" type='file' name='img1' style="width:50%; height:50%;font-size:20px;"/>
             <img class = "postImg" src = "{{post.img1}}">
+            {% if post.img1 %}
             <a href = "/post/delete{{post.id}}/img1">
                 <button class="deleteBtn" type="button" onclick="">X</button>
             </a>
-          
+            {% endif %}
         </div>
         <div class ="box"> 
             <label id="img-label" for="img2">Edit img2 -></label>
@@ -54,7 +58,7 @@
         <div class ="box"> 
             <label id="img-label" for="img4">Edit img4 -></label>
             <input id = "images" type='file' name='img4' style="width:50%; height:50%;font-size:20px;"/>
-            <img class = "postImg" src = "{{post.img4}}">
+            <img class = "exImg" src = "{{post.img4}}">
             {% if post.img4 %}
             <a href = "/post/delete{{post.id}}/img4">
                 <button class="deleteBtn" type="button" onclick="">X</button>
@@ -100,7 +104,9 @@ if (document.getElementById("images")) {
         case 0: 
             if (length > max - uploadNum) 
             { 
+
                 alert("사진은 최대 5장까지만 가능합니다."); 
+              
                 return; 
             }
             uploadNum += length; 
@@ -108,13 +114,16 @@ if (document.getElementById("images")) {
         case 1: 
             if (length > max - uploadNum) 
             { 
+  
                 alert("사진은 최대 5장까지만 가능합니다."); 
+                
                 return; 
             } uploadNum += length; 
             break; 
         case 2: 
             if (length > max - uploadNum)
             { 
+  
                 alert("사진은 최대 5장까지만 가능합니다.");
             return; 
             } 

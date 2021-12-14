@@ -14,14 +14,21 @@
   margin-bottom: 15px;
   font-size: 25px;
 }
-
+.timeBox{
+  margin-bottom: 15px;
+  font-size: 25px;
+  border: 2px solid black;
+}
 .input{
   width : 200px;
   height: 30px;
   border: 2px solid black;
   border-radius: 5px;
 }
-
+.exImg{
+  width : 200px;
+  height: 100px;
+}
 #content_Title{
   font-size: 30px;
   margin-top: 5px;

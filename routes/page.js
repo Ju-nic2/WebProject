@@ -61,6 +61,9 @@ router.get('/profile',isLogined, (req, res, next) => {
 router.get('/account',(req, res, next) => {
   res.render('signup', { title: 'JunicWorld'});
 });
+router.get('/msg',(req, res, next) => {
+  res.render('message', { title: 'JunicWorld', where: 'msg'});
+});
 
 
   module.exports = router;
