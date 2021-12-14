@@ -9,7 +9,7 @@ router.get('/:num',isLogined, async (req, res, next)  => {
     [result, metadata] = await sequelize.query(`select * from posts`);
     const count = Object.keys(result).length;
     console.log(count);
-    let posts = new Array();
+    let posts = new Array();6
     let pagenum = new Array();
     for(let i = 1; i <= (count/9) + 1; i++)
     {
@@ -61,10 +61,19 @@ router.get('/hashtagSearch/:searchString',async (req, res, next) => {
 });
 
 
-router.get('/search/:searchString',isLogined, (req, res, next) => {
+router.get('/search/:searchString',isLogined,async (req, res, next) => {
     result = req.session.message;
     searchString = req.params.searchString;
-    
+    if (result){
+        const count = Object.keys(result).length;
+        console.log(count);
+        let posts = new Array();
+        for(let i = 0; i < count; i++ ){
+            [result2, metadata] = await sequelize.query(`select title from PostHashtag join hashtags on HashtagId = id where PostId = '${result[i].id}'`);
+            result[i].hashtags = result2;
+            posts.push(result[i]);
+        }
+    }
     res.render('home', { title: 'JunicWorld',where : 'home', posts: result, searchString:searchString});
 });
 router.post('/search',async (req, res, next) => {
