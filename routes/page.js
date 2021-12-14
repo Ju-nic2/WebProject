@@ -15,23 +15,6 @@ router.get('/', (req, res, next) => { //미들웨어 checkLogin에서 처리됨 
     res.render('index', { title: 'JunicWorld'});
 });
 
-router.get('/home', async (req, res, next) => { 
-  [result, metadata] = await sequelize.query(`select * from posts`);
-    const count = Object.keys(result).length;
-    let posts = new Array();
-    let pagenum = new Array();
-    for(let i = 1; i <= count/9; i++)
-    {
-        pagenum.push(i);
-    }
-    let start = 0;
-    let end = (count > 9) ? 9 : count;
-    for(let i = start; i < end; i++){
-        posts.push(result[i]);
-    }
-     console.log(count);
-    res.render('home', { title: 'JunicWorld',where : 'home', posts: posts, pagenum: pagenum});
-});
 
 
 router.get('/follow', isLogined, async (req, res, next) => {

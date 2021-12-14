@@ -28,7 +28,7 @@
         <div class ="box"> 
             <label id="img-label" for="img1">Edit img1 -></label>
             <input id = "images" type='file' name='img1' style="width:50%; height:50%;font-size:20px;"/>
-            <img class = "postImg" src = "{{post.img1}}">
+            <img class = "exImg" src = "{{post.img1}}">
             {% if post.img1 %}
             <a href = "/post/delete{{post.id}}/img1">
                 <button class="deleteBtn" type="button" onclick="">X</button>
@@ -38,7 +38,7 @@
         <div class ="box"> 
             <label id="img-label" for="img2">Edit img2 -></label>
             <input id = "images" type='file' name='img2'  style="width:50%; height:50%;font-size:20px;"/>
-            <img class = "postImg" src = "{{post.img2}}">
+            <img class = "exImg" src = "{{post.img2}}">
             {% if post.img2 %}
             <a href = "/post/delete{{post.id}}/img2">
                 <button class="deleteBtn" type="button" onclick="">X</button>
@@ -48,7 +48,7 @@
         <div class ="box"> 
             <label id="img-label" for="img3">Edit img3 -></label>
             <input id = "images" type='file' name='img3' style="width:50%; height:50%;font-size:20px;"/>
-            <img class = "postImg" src = "{{post.img3}}">
+            <img class = "exImg" src = "{{post.img3}}">
             {% if post.img3 %}
             <a href = "/post/delete{{post.id}}/img3">
                 <button class="deleteBtn" type="button" onclick="">X</button>
@@ -68,7 +68,7 @@
         <div class ="box"> 
             <label id="img-label" for="img5">Edit img5 -></label>
             <input id = "images" type='file' name='img5' style="width:50%; height:50%;font-size:20px;"/>
-            <img class = "postImg" src = "{{post.img5}}">
+            <img class = "exImg" src = "{{post.img5}}">
             {% if post.img5 %}
             <a href = "/post/delete{{post.id}}/img5">
                 <button class="deleteBtn" type="button" onclick="">X</button>
@@ -82,7 +82,7 @@
         <input type="submit" value="Edit"  style="width:25%; height:50%;font-size:20px;"/>
         </div>
     </form>
-    <form method = "get" action = "post/delete/{{post.id}}">
+    <form method = "get" action = "/post/delete/{{post.id}}">
         <div class ="box">
             <input type="submit" value="Delete"  style="width:25%; height:50%;font-size:20px;"/>
             </div>

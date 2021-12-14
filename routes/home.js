@@ -16,11 +16,14 @@ router.get('/:num',isLogined, async (req, res, next)  => {
         pagenum.push(i);
     }
     let curpage = parseInt(req.params.num, 10);
-    console.log(curpage+' sex');
+    
     let start = (curpage-1)*9;
     let end = ((count-start) >= 9 ) ? 9*curpage : count;
     console.log(start +' '+end);
     for(let i = start; i < end; i++){
+        [result2, metadata] = await sequelize.query(`select title from PostHashtag join hashtags on HashtagId = id where PostId = '${result[i].id}'`);
+        result[i].hashtags = result2;
+        console.log(result[i].hashtags)
         posts.push(result[i]);
     }
      console.log(count);
@@ -30,28 +33,39 @@ router.get('/:num',isLogined, async (req, res, next)  => {
 router.get('/writerSearch/:searchString',async (req, res, next) => {
     searchString = req.params.searchString;
     [result, metadata] = await sequelize.query(`select * from posts where writerid = '${searchString}'`);
-    posts=result;
+    const count = Object.keys(result).length;
+    console.log(count);
+    let posts = new Array();
+    for(let i = 0; i < count; i++ ){
+        [result2, metadata] = await sequelize.query(`select title from PostHashtag join hashtags on HashtagId = id where PostId = '${result[i].id}'`);
+        result[i].hashtags = result2;
+        posts.push(result[i]);
+    }
+
+    res.render('home', { title: 'JunicWorld',where : 'home', posts: posts, searchString:searchString});
+});
+router.get('/hashtagSearch/:searchString',async (req, res, next) => {
+    searchString = req.params.searchString;
+    [result, metadata] = await sequelize.query(`select distinct(postId) from PostHashtag join hashtags on HashtagId = id  where title = '${searchString}'`);
+    const count = Object.keys(result).length;
+    console.log(count);
+    let posts = new Array();
+    for(let i = 0; i < count; i++ ){
+        [result2, metadata2] = await sequelize.query(`select * from posts where id = '${result[i].postId}'`);
+        [result3, metadata3] = await sequelize.query(`select title from PostHashtag join hashtags on HashtagId = id where PostId = '${result[i].postId}'`);
+        result2[0].hashtags = result3;
+        posts.push(result2[0])
+    }
     console.log(result);
     res.render('home', { title: 'JunicWorld',where : 'home', posts: posts, searchString:searchString});
 });
 
+
 router.get('/search/:searchString',isLogined, (req, res, next) => {
     result = req.session.message;
     searchString = req.params.searchString;
-    const count = Object.keys(result).length;
-    let posts = new Array();
-    let pagenum = new Array();
-    for(let i = 1; i <= count; i++)
-    {
-        pagenum.push(i);
-    }
-    let start = 0;
-    end = (count > 9) ? 9 : count;
-    for(let i = start; i < end; i++){
-        posts.push(result[i]);
-    }
-     console.log(count);
-    res.render('home', { title: 'JunicWorld',where : 'home', posts: posts, searchString:searchString, pagenum: pagenum});
+    
+    res.render('home', { title: 'JunicWorld',where : 'home', posts: result, searchString:searchString});
 });
 router.post('/search',async (req, res, next) => {
     const { searchKeyword, searchString} = req.body;

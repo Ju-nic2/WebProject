@@ -34,10 +34,13 @@
                     <div>
                         <img class = "postImg" src = "{{post.img1}}">
                     </div>
-                        <a href = "/home/writerSearch/{{post.writerid}}">{{post.writerid}} </a>  
+                        <a href = "/home/writerSearch/{{post.writerid}}"  style ="font-weight: bold; font-size:15px;">{{post.writerid}} </a>  
                     <div>
                         {{post.createdAt}}
-                    </div>              
+                    </div> 
+                    {% for tag in post.hashtags %}
+                    <a href = "/home/hashtagSearch/{{tag.title}}" style ="font-weight: bold; font-size:15px;">#{{tag.title}} </a>  
+                    {% endfor %}             
                     <div>
                         {{post.content}}
                     </div>
