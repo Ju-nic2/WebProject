@@ -23,6 +23,11 @@ module.exports = class Post extends Sequelize.Model {
           type: Sequelize.STRING(200),// 경로 지정 
           allowNull: true,
       },
+      writername: {
+        type: Sequelize.STRING(10),
+        allowNull: false,
+        defaultValue: 'junic',
+      },
       content: {
           type: Sequelize.STRING(140),
           allowNull: false,
@@ -35,12 +40,12 @@ module.exports = class Post extends Sequelize.Model {
       modelName: 'Post',
       tableName: 'posts',
       paranoid: false,
-      charset: 'utf8mb4',
+      charset: 'utf8',
     });
   }
 
   static associate(db) {
-    db.Post.belongsTo(db.User,{foreignKey: 'writerid', targetKey: 'uid'}); //유저와 외래키 연결
+   db.Post.belongsTo(db.User,{foreignKey: 'writerid', targetKey: 'uid'}); //유저와 외래키 연결
     db.Post.belongsToMany(db.Hashtag, { through: 'PostHashtag' });
   }
 };

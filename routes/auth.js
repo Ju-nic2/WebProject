@@ -18,7 +18,7 @@ router.post('/login', (req, res, next) => {
         console.error(loginError);
         return next(loginError);
       }
-      return res.redirect('/home');
+      return res.redirect(`/home/1`);
     });
   })(req, res, next); //그 다음 미들웨어 호출 -> page.js 에 있음 
 });

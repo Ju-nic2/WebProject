@@ -38,3 +38,47 @@ a{
   text-decoration-line: none;
   color : black;
 }
+.main_box {
+  text-align: center;
+  display:grid;
+   grid-template-columns: 1fr 1fr;
+   text-align: center;
+   width: auto;
+}
+.list_box {
+  height: 1000px;
+  text-align: center;
+  display:grid;
+  flex-direction: row;
+  /* float: left; */
+  width: auto;
+  height: auto;
+  margin:0 auto;
+}
+.main_title{
+	text-align: center;
+}
+.main_list {
+    width: 700px;
+     margin: 0 auto;
+     height: auto;
+}
+
+.list_start {
+    text-align: center;
+}
+
+.list_detail_main {
+    display: inline-block;
+    width: 220px;
+    height: 260px;
+    margin-bottom: 5px;
+}
+
+.list_detail {
+    display: inline-block;
+    width: auto;
+    height: auto;
+       border: 1px solid;
+    margin-bottom: 5px;
+}

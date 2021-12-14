@@ -11,6 +11,8 @@ dotenv.config();
 const pageRouter = require('./routes/page'); //라우터 가져오기 
 const authRouter = require('./routes/auth');
 const postRouter = require('./routes/post');
+const followRouter = require('./routes/follow');
+const homeRouter = require('./routes/home');
 
 const { sequelize } = require('./models');
 const passportConfig = require('./passport'); // 설정값 가져오기 (passport/index.js)
@@ -34,6 +36,7 @@ sequelize.sync({ force: false }) // db 연결
 
 app.use(morgan('dev')); //개발용 미들웨어 
 app.use(express.static(path.join(__dirname, 'public'))); // static file 위치
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser(process.env.COOKIE_SECRET));
@@ -52,6 +55,8 @@ app.use(passport.session()); // 설정한 passport에 세션 저장 -> passport/
 app.use('/', pageRouter); //라우터 연결 
 app.use('/auth', authRouter);
 app.use('/post',postRouter);
+app.use('/follow',followRouter);
+app.use('/home',homeRouter);
 
 app.use((req, res, next) => {
     const error =  new Error(`${req.method} ${req.url} 라우터가 없습니다.`);

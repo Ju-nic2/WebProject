@@ -1,0 +1,39 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div id="indexBody">
+        <div class="main_box">
+            <div class="list_box">
+                <h2> Folloing List </h2>
+                {% if user.Followings %}
+                    {% for following in user.Followings %}
+                        <div class="list_detail">
+                            <form method = "post" action="/follow/{{following.uid}}/delete">
+                                <span id = "userID" name = "unfollowId" style="font-size:25px;font-weight: bold ;">{{following.uid}}</span> <br> {{following.name}}
+                                <input type="submit" value="UnFollow"  style="width:100%; height:50%;font-size:20px;"/>
+                            </form> 
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+                <div class="list_box">
+                    <h2> Recomand follow List </h2>
+                    {% if userList %}    
+                        {% for u in userList %}
+                            
+                                <div class="list_detail">
+                                    <form method = "post" action="/follow/{{u.uid}}/add" name = "follow">
+                                        <span id = "followId" name = "followId" style="font-size:25px;font-weight: bold;">{{u.uid}}</span>:{{u.name}}
+                                        <input type="submit" value="Follow"  style="width:100%; height:50%;font-size:20px;"/>
+                                    </form> 
+                                </div>
+                               
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+</div>
+{% endblock %}
+{% block script %}
+ 
+{% endblock %}

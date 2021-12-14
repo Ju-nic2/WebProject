@@ -2,12 +2,12 @@
 {% block content %}
 <div id="indexBody">
     <p style="margin-top:5px;">
-      <img src = "images/posting_icon.png" width="200dp" height="200dp">
+      <img src = "/images/posting_icon.png" width="200dp" height="200dp">
     </p>
     <p  style="font-size: 25px">
      ADD new posting<br>
     </p>
-    
+  {% if flag == 'new' %}  
     <form name="posting" action="/post/newpost" method="post" enctype="multipart/form-data">
         <div class ="box"> 
             <label id="img-label" for="images">Upload images -></label>
@@ -20,7 +20,72 @@
         <input type="submit" value="Upload"  style="width:25%; height:50%;font-size:20px;"/>
         </div>
     </form>
-    </div>
+    {% elif flag == 'edit' %}
+    <form name="posting" action="/post/editpost/{{post.id}}" method="post" enctype="multipart/form-data">
+        <div class ="box"> 
+            <label id="img-label" for="img1">Edit img1 -></label>
+            <input id = "images" type='file' name='img1' style="width:50%; height:50%;font-size:20px;"/>
+            <img class = "postImg" src = "{{post.img1}}">
+            <a href = "/post/delete{{post.id}}/img1">
+                <button class="deleteBtn" type="button" onclick="">X</button>
+            </a>
+          
+        </div>
+        <div class ="box"> 
+            <label id="img-label" for="img2">Edit img2 -></label>
+            <input id = "images" type='file' name='img2'  style="width:50%; height:50%;font-size:20px;"/>
+            <img class = "postImg" src = "{{post.img2}}">
+            {% if post.img2 %}
+            <a href = "/post/delete{{post.id}}/img2">
+                <button class="deleteBtn" type="button" onclick="">X</button>
+            </a>
+            {% endif %}
+        </div>
+        <div class ="box"> 
+            <label id="img-label" for="img3">Edit img3 -></label>
+            <input id = "images" type='file' name='img3' style="width:50%; height:50%;font-size:20px;"/>
+            <img class = "postImg" src = "{{post.img3}}">
+            {% if post.img3 %}
+            <a href = "/post/delete{{post.id}}/img3">
+                <button class="deleteBtn" type="button" onclick="">X</button>
+            </a>
+            {% endif %}
+        </div>
+        <div class ="box"> 
+            <label id="img-label" for="img4">Edit img4 -></label>
+            <input id = "images" type='file' name='img4' style="width:50%; height:50%;font-size:20px;"/>
+            <img class = "postImg" src = "{{post.img4}}">
+            {% if post.img4 %}
+            <a href = "/post/delete{{post.id}}/img4">
+                <button class="deleteBtn" type="button" onclick="">X</button>
+            </a>
+            {% endif %}
+        </div>
+        <div class ="box"> 
+            <label id="img-label" for="img5">Edit img5 -></label>
+            <input id = "images" type='file' name='img5' style="width:50%; height:50%;font-size:20px;"/>
+            <img class = "postImg" src = "{{post.img5}}">
+            {% if post.img5 %}
+            <a href = "/post/delete{{post.id}}/img5">
+                <button class="deleteBtn" type="button" onclick="">X</button>
+            </a>
+            {% endif %}
+        </div>
+        <div class ="box">
+            <input type="text" name="content" id="content" placeholder="{{post.content}}"  style="width:50%; height:37px; font-size:20px;"/>
+        </div>
+        <div class ="box">
+        <input type="submit" value="Edit"  style="width:25%; height:50%;font-size:20px;"/>
+        </div>
+    </form>
+    <form method = "get" action = "post/delete/{{post.id}}">
+        <div class ="box">
+            <input type="submit" value="Delete"  style="width:25%; height:50%;font-size:20px;"/>
+            </div>
+    </form>
+   
+    {% endif %}
+    
 </div>
 {% endblock %}
 {% block script %}

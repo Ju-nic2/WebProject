@@ -38,7 +38,7 @@ module.exports = class User extends Sequelize.Model {
   }
   //sequelize 가 자동으로 addFollow, getFolloers, getFollowings 함수 생성해줌. 
   static associate(db) {
-     db.User.hasMany(db.Post, {foreignKey: 'writerid', sourceKey: 'uid'});
+  db.User.hasMany(db.Post, {foreignKey: 'writerid', sourceKey: 'uid'});
     db.User.belongsToMany(db.User, { //내가 팔로우 하는 사람들 
       foreignKey: 'followingId',
       as: 'Followers',
